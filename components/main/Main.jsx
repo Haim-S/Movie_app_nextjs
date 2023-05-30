@@ -1,6 +1,9 @@
-import React from 'react'
+'use client'
 
 const Main = () => {
+
+
+
   return (
     <div className='w-full h-screen'>
 

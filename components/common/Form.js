@@ -3,11 +3,14 @@ import React, {useRef, useEffect} from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {GoogleButton} from "react-google-button";
-import {googleSignIn} from "../../store/slices/authSlice"
-import { useDispatch } from 'react-redux';
+// import {googleSignIn, LoginByGoogle} from "../../store/slices/authSlice"
+// import { useDispatch } from 'react-redux';
+import { UserAuth } from '@/context/AuthContext';
 
 
 const Form = () => {
+
+  const { LoginByGoogle, user } = UserAuth();
 
     const RefEmail = useRef();
     const RefPassword = useRef();
@@ -15,7 +18,7 @@ const Form = () => {
     const router = useRouter();
     const locale = router.asPath;
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const handleSubmit = async (e) =>{     
         e.preventDefault();
@@ -32,19 +35,20 @@ const Form = () => {
         }
     }
 
-    const handleGoogleSignIn = ()=>{
+    const handleGoogleSignIn = async()=>{
       try {
-         dispatch (googleSignIn)
+      await LoginByGoogle()
       } catch (error) {
-        
+        console.log(error);
       }
     }
 
     useEffect(()=>{
-
-        console.log(locale);
-
-    },[])
+      if(user != null){
+        router.push("/");
+      }
+      // router.push("/Login") || router.push("/Register");
+    },[user])
 
 
   return (
@@ -65,7 +69,9 @@ const Form = () => {
               </Link>
             </p>
      </form>
-            <GoogleButton style={{width: "100%", marginBottom: "12px"}} onClick={handleGoogleSignIn}/>
+     <button className='w-full' onClick={()=> handleGoogleSignIn()}>
+            <GoogleButton style={{width: "100%", marginBottom: "12px"}}/>
+     </button>
     </>
   )
 }
