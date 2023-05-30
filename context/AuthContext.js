@@ -1,5 +1,8 @@
 import {createContext, useContext, useEffect, useState} from "react";
+
 import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
     GoogleAuthProvider,
     signInWithPopup,
     signInWithRedirect,
@@ -13,6 +16,16 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({children})=> {
 
     const [user, setUser] = useState({});
+
+    
+    function RegisterByEmailAndPassword(email, password) {
+      createUserWithEmailAndPassword(auth, email, password);
+    
+  }
+
+  function LoginByEmailAndPassword(email, password){
+      return signInWithEmailAndPassword(auth, email, password)
+  }
 
     const LoginByGoogle = ()=>{
         const provider = new GoogleAuthProvider();
@@ -38,7 +51,7 @@ export const AuthContextProvider = ({children})=> {
 
 
     return(
-        <AuthContext.Provider value={{ LoginByGoogle, logOut, user }}>
+        <AuthContext.Provider value={{ LoginByGoogle, logOut, LoginByEmailAndPassword, RegisterByEmailAndPassword, user }}>
             {children}
         </AuthContext.Provider>
     )

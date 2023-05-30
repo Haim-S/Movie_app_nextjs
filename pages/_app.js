@@ -6,7 +6,9 @@ import Footer from '@/components/footer/Footer'
 // import { store } from '@/store/store'
 import { AuthContextProvider } from '@/context/AuthContext'
 
+
 export default function App({ Component, pageProps }) {
+
 
   return(
   <>
