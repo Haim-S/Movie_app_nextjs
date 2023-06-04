@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {useRouter} from 'next/router'
-import { UserAuth } from '@/context/AuthContext';
+import { UserAuth } from '../context/AuthContext';
+import SavedShows from '../components/common/SavedShows'
 
 
 const Account = () => {
@@ -8,6 +9,7 @@ const Account = () => {
   const { user } = UserAuth();
 
   useEffect(()=>{
+    user && router.push("/Account")
     if(user != null){
       router.push("/Account")
     }
@@ -26,7 +28,7 @@ const Account = () => {
         <div className='absolute top-[20%] p-4 md:p-8'>
           <h1 className='text-3xl md:text-5xl font-bold'>My Shows</h1>
         </div>
-
+        <SavedShows/>
       </div>
     </div>
     </>

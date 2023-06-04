@@ -38,6 +38,8 @@ export default function Home() {
         <meta name="description" content="I’m a front-end web developer specializing in building (and occasionally designing) exceptional digital experiences." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+     
+
     </Head>
         <Main/>
         <Row rowID='1' title='Up Coming' fetchURL={requests.requestUpcoming}/>

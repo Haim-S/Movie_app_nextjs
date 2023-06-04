@@ -3,7 +3,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import TvShow from '@/components/common/TvShow'
+
 
 
 
@@ -15,23 +15,10 @@ const MovieInformation = () => {
   
   const [info, setInfo] = useState([])
   
-  // const papa = async(id)=>{
-  //   try {
-  //     const key = 'f15b445d91e7afb9a98d71e98d21d410';
-  //     const url = `https://api.themoviedb.org/3/movie/${id}/?api_key=${key}`;
-  //   const res = await axios.get(url);
-  //   setInfo(res.data);
-  //   console.log(info);
-      
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
-  // }
 
   const handleTvShowClick = async (tvShowId) => {
     try {
-        window.open(`https://www.themoviedb.org/tv/${tvShowId}`, '_blank');
+        window.open(`https://api.themoviedb.org/3/trending/movie/${tvShowId}?api_key=f15b445d91e7afb9a98d71e98d21d410`, '_blank');
     } catch (error) {
         console.error(error);
     }
@@ -68,7 +55,7 @@ console.log(info);
             </div>
         </div>
     </div>
-    <TvShow id={info?.id}/>
+ 
     </div>
   )
 }
