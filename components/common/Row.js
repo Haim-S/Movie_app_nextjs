@@ -34,9 +34,7 @@ const Row = ({rowID, title, fetchURL}) => {
         size={40}
         />
         <div id={'slider' + rowID} className='w-full h-full overflow-hidden whitespace-nowrap scroll-smooth relative'>
-            {movies.map((item, id)=> (
-                <Movie key={id} item={item}/>
-            ))}
+            {movies.map((item, id)=>(<Movie key={id} item={item}/>))}
         </div>
         <MdChevronRight 
             onClick={slideRight}
